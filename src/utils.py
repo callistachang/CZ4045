@@ -5,13 +5,13 @@ import json
 
 
 def load_data_pandas(filepath):
-    with open(filepath, encoding="utf-8") as f:
-        df = pd.DataFrame([json.loads(l) for l in f.readlines()])
+    with open(filepath, encoding="ISO-8859-1") as f:
+        df = pd.read_json(f.read(), lines=True, encoding="ISO-8859-1")
     return df
 
 
 def load_data_json(filepath, review_text):
-    with open(filepath, encoding="utf-8") as f:
+    with open(filepath, encoding="ISO-8859-1") as f:
         for line in f:
             data = json.loads(line)
             if review_text == data["text"]:
