@@ -6,7 +6,7 @@ import json
 
 def load_data_pandas(filepath):
     with open(filepath, encoding="utf-8") as f:
-        df = pd.read_json(f.read(), lines=True, encoding="unicode_escape")
+        df = pd.DataFrame([json.loads(l) for l in f.readlines()])
     return df
 
 
