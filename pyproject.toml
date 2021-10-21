@@ -9,6 +9,8 @@ python = "^3.8"
 spacy = "^3.0.0"
 spacy-streamlit = "^1.0.2"
 streamlit = "^1.0.0"
+matplotlib = "^3.4.3"
+plotly = "^5.3.1"
 
 [tool.poetry.dependencies.en_core_web_sm]
 url = "https://github.com/explosion/spacy-models/releases/download/en_core_web_sm-3.0.0/en_core_web_sm-3.0.0.tar.gz"

@@ -17,7 +17,7 @@ def app():
     doc = spacy_streamlit.process_text(model_name, review_text)
     review_data = load_data_json(filepath, review_text)
     st.markdown("JSON object:")
-    st.write(review_data)
+    st.json(review_data)
 
     spacy_streamlit.visualize_tokens(doc, title="Token Analysis")
     spacy_streamlit.visualize_parser(doc, title="Dependency Visualizer")

@@ -1,8 +1,9 @@
 import streamlit as st
-from src import ner_visualizer, dependency_visualizer, home_page
+from src import ner_visualizer, dependency_visualizer, home_page, dataset_analysis
 
 pages = {
     "Introduction": home_page,
+    "Dataset Analysis": dataset_analysis,
     "Named Entity Recognition": ner_visualizer,
     "Token & Dependency Visualizer": dependency_visualizer,
 }
