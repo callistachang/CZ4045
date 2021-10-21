@@ -24,5 +24,5 @@ def app():
     spacy_streamlit.visualize_ner(
         doc,
         labels=nlp.get_pipe("ner").labels,
-        title="Named Entity Recognition Visualizer"
+        title="Named Entity Recognition Visualizer",
     )
