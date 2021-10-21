@@ -1,8 +1,7 @@
 import streamlit as st
-import page1
-import page2
+from src import ner_visualizer, dependency_visualizer, home_page
 
-pages = {"Named Entity Recognition": page1, "Token & Dependency Visualizer": page2}
+pages = {"Introduction": home_page, "Named Entity Recognition": ner_visualizer, "Token & Dependency Visualizer": dependency_visualizer}
 
 st.sidebar.title("Navigation")
 page_selection = st.sidebar.radio("Go to", list(pages.keys()))

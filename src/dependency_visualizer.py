@@ -1,19 +1,23 @@
 import spacy_streamlit
 import streamlit as st
-from utils import load_data
+from .utils import load_data_pandas, load_data_json
 import random
 
 
 def app():
     model_name = "en_core_web_sm"
-    df = load_data("reviewSelected100.json")
+    filepath = "src/reviewSelected100.json"
+    df = load_data_pandas(filepath)
     reviews = list(sorted(df["text"].to_list(), key=len))[20:40]
     random.seed(420)
     random.shuffle(reviews)
 
     st.title("Token Analysis")
-    review_text = st.selectbox("Choose review to analyze:", reviews)
+    review_text = st.selectbox("Choose a review from the following dropdown:", reviews)
     doc = spacy_streamlit.process_text(model_name, review_text)
+    review_data = load_data_json(filepath, review_text)
+    st.markdown("JSON object:")
+    st.write(review_data)
 
     spacy_streamlit.visualize_tokens(doc, title="Token Analysis")
     spacy_streamlit.visualize_parser(doc, title="Dependency Visualizer")
