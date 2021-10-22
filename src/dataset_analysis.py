@@ -43,26 +43,39 @@ def build_boxplot(df, col_name):
 def app():
     filepath = "src/reviewSelected100.json"
     df = load_data_pandas(filepath)
-    st.markdown("# Dataset Analysis")
-    st.markdown(f"The dataset we are analyzing is `reviewSelected100.json`.")
-    st.markdown("---")
-    st.markdown(f"**Total number of reviews in dataset:** {len(df)}")
     st.markdown(
-        f"**Total number of unique users in dataset:** {df['user_id'].nunique()}"
+        f"""
+# Dataset Analysis
+
+The dataset we are analyzing is `reviewSelected100.json`.
+
+---
+**Total number of reviews in dataset:** {len(df)}
+
+**Total number of unique users in dataset:** {df['user_id'].nunique()}
+
+**Total number of unique businesses in dataset:** {df['business_id'].nunique()}
+
+---
+
+## Number of Stars
+
+Most reviews are 5-star reviews, followed by 4-star reviews and 1-star reviews.
+"""
     )
-    st.markdown(
-        f"**Total number of unique businesses in dataset:** {df['business_id'].nunique()}"
-    )
-    st.markdown("---")
     build_piechart(df)
     st.markdown(
-        "Most reviews are 5-star reviews, followed by 4-star reviews and 1-star reviews."
+        """
+---
+
+## Useful, Funny and Cool Reviews
+
+Most reviews have only 0-2 other users who found it useful, funny or cool. 
+However, there are some reviews with more than 50 labels. This is likely because 
+reviews in Yelp are sorted by popularity and helpfulness, causing other reviews to 
+get 'buried' in the crowd.
+    """
     )
-    st.markdown("---")
     build_boxplot(df, "useful")
     build_boxplot(df, "funny")
     build_boxplot(df, "cool")
-    # st.markdown("We can see that most reviews have at most 1-2 other users who rated it as useful, funny or cool.")
-    st.markdown(
-        "Most reviews have only 0-2 other users who found it useful, funny or cool. However, there are some reviews with more than 50 reviews. This is likely because reviews in Yelp are sorted by popularity and helpfulness, causing other reviews to get 'buried' in the crowd."
-    )

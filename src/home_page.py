@@ -3,10 +3,12 @@ import streamlit as st
 
 def app():
     st.markdown(
-        """# NLP Assignment 1
+        """
+# NLP Assignment 1
 
 Hello profs! Please use the **navigation in the sidebar** (on the left of the page) to see our 
-implementations of **NER visualization**, **token analysis** and **dependency visualization**.
+**Basic Data Analysis** and implementations of **Named Entity Recognition**, **Token Analysis**
+and **Dependency Visualization**.
 
 We hope you enjoy!
 
