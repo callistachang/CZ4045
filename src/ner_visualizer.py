@@ -15,7 +15,9 @@ def app():
     nlp = load_model(model_name)
 
     st.title("Named Entity Recognition")
+    st.markdown("20 reviews are used as samples for NER.")
     review_text = st.selectbox("Choose a review from the following dropdown:", reviews)
+    st.markdown("---")
     doc = spacy_streamlit.process_text(model_name, review_text)
     review_data = load_data_json(filepath, review_text)
     st.markdown("JSON object:")

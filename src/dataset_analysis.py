@@ -1,10 +1,10 @@
 from src.utils import load_data_pandas
 import streamlit as st
-import random
 from .utils import load_data_pandas
 import matplotlib.pyplot as plt
-import numpy as np
 import plotly.graph_objects as go
+from streamlit_pandas_profiling import st_profile_report
+import pandas_profiling
 
 
 def build_piechart(df):
@@ -40,6 +40,11 @@ def build_boxplot(df, col_name):
     st.plotly_chart(fig)
 
 
+@st.cache(allow_output_mutation=True, suppress_st_warning=True)
+def generate_report(df):
+    return df.profile_report()
+
+
 def app():
     filepath = "src/reviewSelected100.json"
     df = load_data_pandas(filepath)
@@ -50,6 +55,9 @@ def app():
 The dataset we are analyzing is `reviewSelected100.json`.
 
 ---
+
+## Basic Statistics 
+
 **Total number of reviews in dataset:** {len(df)}
 
 **Total number of unique users in dataset:** {df['user_id'].nunique()}
@@ -79,3 +87,11 @@ get 'buried' in the crowd.
     build_boxplot(df, "useful")
     build_boxplot(df, "funny")
     build_boxplot(df, "cool")
+    st.markdown(
+        """
+---
+
+## Overall Profile Report of Dataset
+    """
+    )
+    st_profile_report(generate_report(df))
